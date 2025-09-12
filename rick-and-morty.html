@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rick and Morty</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f4f4;
+        height: calc(100vh - 16px);
+        padding: 8px;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        .pagination-buttons {
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 4px;
+        }
+        a,
+        button {
+          text-wrap: nowrap;
+          cursor: pointer;
+          display: inline-block;
+          text-decoration: none;
+          color: black;
+          font-weight: bold;
+          background-color: aliceblue;
+          padding: 8px 16px;
+          border-radius: 12px;
+          border: 1px solid #a6a6a6;
+          transition: all 0.2s ease-in;
+          &:hover {
+            box-shadow: 2px 2px 4px 0 #404040;
+          }
+          &.hide {
+            display: none;
+          }
+          &.disabled {
+            opacity: 0.5;
+            cursor: default;
+            &:hover {
+              box-shadow: none;
+            }
+          }
+        }
+      }
+      .filters-wrapper {
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        .filter-name,
+        .filter-status,
+        .filter-species {
+          padding-inline: 4px;
+          height: 42px;
+          font-weight: bold;
+          font-size: 16px;
+          text-align: center;
+          border-radius: 6px;
+          border: none;
+          transition: height 0.3s ease-in;
+          &.height-0 {
+            height: 0px;
+          }
+          &:active {
+            outline: 1px solid #a6a6a6;
+          }
+          &:focus {
+            outline: 1px solid #a6a6a6;
+          }
+        }
+      }
+      h1 {
+        text-align: center;
+        text-wrap: pretty;
+      }
+      .rick-main {
+        box-sizing: border-box;
+        padding-block: 32px;
+        margin-inline: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        .no-characters.hide {
+          display: none;
+        }
+        .character {
+          box-sizing: border-box;
+          padding: 32px;
+          height: 257px;
+          width: 304px;
+          border-radius: 4px;
+          background-color: white;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          .char-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-inline: auto;
+            margin-bottom: 24px;
+            img {
+              width: 100%;
+              border-radius: 100px;
+            }
+            &.skeleton {
+              animation: pulse 2.5s ease-in-out infinite;
+            }
+          }
+          p {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 8px;
+            span.key {
+              font-weight: bold;
+            }
+            span.value {
+              display: block;
+              border-radius: 6px;
+              width: 150px;
+              height: 17px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              text-wrap: nowrap;
+            }
+          }
+          &.skeleton {
+            p {
+              span.value {
+                animation: pulse 2.5s ease-in-out infinite;
+              }
+            }
+          }
+          &.hide {
+            display: none;
+          }
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          background-color: #e5e7eb;
+        }
+        50% {
+          background-color: #595959;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <button class="show-hide-filters">Show filters</button>
+      <div class="pagination-buttons">
+        <button class="prev-page">Prev page</button>
+        <button class="next-page">Next page</button>
+      </div>
+    </nav>
+    <div class="filters-wrapper">
+      <select class="filter-species height-0">
+        <option value="" disabled selected hidden>Species</option>
+        <option value="unknown">unknown</option>
+        <option value="mythological-creature">Mythological Creature</option>
+        <option value="human">Human</option>
+        <option value="humanoid">Humanoid</option>
+        <option value="alien">Alien</option>
+        <option value="poopybutthole">Poopybutthole</option>
+        <option value="animal">Animal</option>
+        <option value="robot">Robot</option>
+        <option value="cronenberg">Cronenberg</option>
+        <option value="disease">Disease</option>
+      </select>
+      <input
+        type="text"
+        class="filter-name height-0"
+        placeholder="Filter by name"
+      />
+      <select class="filter-status height-0">
+        <option value="" disabled selected hidden>Status</option>
+        <option value="unknown">unknown</option>
+        <option value="alive">Alive</option>
+        <option value="dead">Dead</option>
+      </select>
+    </div>
+    <h1>Rick and Morty Character Compass</h1>
+    <main class="rick-main">
+      <p class="no-characters hide">No characters matching the filters</p>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+      <article class="character skeleton">
+        <div class="char-image skeleton"></div>
+        <p class="char-name">
+          <span class="key">Name:</span><span class="value"></span>
+        </p>
+        <p class="char-status">
+          <span class="key">Status:</span><span class="value"></span>
+        </p>
+        <p class="char-species">
+          <span class="key">Species:</span><span class="value"></span>
+        </p>
+      </article>
+    </main>
+    <script type="text/javascript">
+      const hideShowPaginationButtons = (info) => {
+        const prevPageButton = document.querySelector(".prev-page");
+        const nextPageButton = document.querySelector(".next-page");
+        if (!info.prev) {
+          prevPageButton.classList.add("disabled");
+        } else {
+          prevPageButton.classList.remove("disabled");
+        }
+        if (!info.next) {
+          nextPageButton.classList.add("disabled");
+        } else {
+          nextPageButton.classList.remove("disabled");
+        }
+      };
+
+      const renderSkeletons = (articles) => {
+        articles.forEach((art) => {
+          art.querySelector("div.char-image").innerHTML = "";
+          art
+            .querySelector("p.char-name")
+            .querySelector("span.value").textContent = "";
+          art
+            .querySelector("p.char-status")
+            .querySelector("span.value").textContent = "";
+          art
+            .querySelector("p.char-species")
+            .querySelector("span.value").textContent = "";
+          art.classList.add("skeleton");
+        });
+      };
+
+      const renderCharacters = ({ results, articles }) => {
+        results.forEach((result, index) => {
+          articles[index].classList.remove("hide");
+          articles[index].querySelector(
+            "div.char-image"
+          ).innerHTML = `<img src="${result.image}" alt="${result.name}" />`;
+          articles[index]
+            .querySelector("p.char-name")
+            .querySelector("span.value").textContent = result.name;
+          articles[index]
+            .querySelector("p.char-status")
+            .querySelector("span.value").textContent = result.status;
+          articles[index]
+            .querySelector("p.char-species")
+            .querySelector("span.value").textContent = result.species;
+          articles[index].classList.remove("skeleton");
+        });
+        const articlesResultsDiff = articles.length - results.length;
+        if (articlesResultsDiff) {
+          const articlesArray = [...articles];
+          for (let i = -articlesResultsDiff; i < 0; i++) {
+            articlesArray.at(i).classList.add("hide");
+          }
+        }
+      };
+
+      const mainLoop = async (
+        url = "https://rickandmortyapi.com/api/character"
+      ) => {
+        const showHideFilters = document.querySelector(".show-hide-filters");
+        const nextPageButton = document.querySelector(".next-page");
+        const prevPageButton = document.querySelector(".prev-page");
+        const filterNameInput = document.querySelector(".filter-name");
+        const filterStatusInput = document.querySelector(".filter-status");
+        const filterSpeciesInput = document.querySelector(".filter-species");
+        const articles = document.querySelectorAll("article.character");
+        const noCharP = document.querySelector("p.no-characters");
+        noCharP.classList.add("hide");
+
+        renderSkeletons(articles);
+        try {
+          const response = await fetch(url);
+          const { info, results, error } = await response.json();
+          if (error) {
+            throw new Error("No characters");
+          }
+          const { next, prev } = info;
+          hideShowPaginationButtons(info);
+          renderCharacters({ results, articles });
+          showHideFilters.onclick = () => {
+            filterNameInput.classList.toggle("height-0");
+            filterSpeciesInput.classList.toggle("height-0");
+            filterStatusInput.classList.toggle("height-0");
+            if (showHideFilters.textContent === "Show filters") {
+              showHideFilters.textContent = "Hide filters";
+            } else {
+              showHideFilters.textContent = "Show filters";
+            }
+          };
+          filterSpeciesInput.oninput = (e) => {
+            mainLoop(
+              `https://rickandmortyapi.com/api/character/?species=${e.target.value.replace(
+                "-",
+                " "
+              )}&name=${filterNameInput.value}&status=${
+                filterStatusInput.value
+              }`
+            );
+          };
+          filterStatusInput.oninput = (e) => {
+            mainLoop(
+              `https://rickandmortyapi.com/api/character/?status=${
+                e.target.value
+              }&name=${
+                filterNameInput.value
+              }&species=${filterSpeciesInput.value.replace("-", " ")}`
+            );
+          };
+          filterNameInput.oninput = (e) => {
+            mainLoop(
+              `https://rickandmortyapi.com/api/character/?name=${
+                e.target.value
+              }&species=${filterSpeciesInput.value.replace("-", " ")}&status=${
+                filterStatusInput.value
+              }`
+            );
+          };
+          if (next) {
+            nextPageButton.onclick = () => {
+              mainLoop(next);
+            };
+          } else {
+            nextPageButton.onclick = undefined;
+          }
+          if (prev) {
+            prevPageButton.onclick = () => {
+              mainLoop(prev);
+            };
+          } else {
+            prevPageButton.onclick = undefined;
+          }
+        } catch (e) {
+          if (e.message === "No characters") {
+            articles.forEach((art) => art.classList.add("hide"));
+            noCharP.classList.remove("hide");
+          }
+        }
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        mainLoop();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Full-Stack Developer Career Path</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      body {
+        max-width: 800px;
+        margin-inline: auto;
+        font-family: "Courier Prime", monospace;
+        background-color: #f4f4f4;
+        color: black;
+        text-wrap: pretty;
+      }
+      .main-header {
+        margin-top: 32px;
+        padding-inline: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px dashed black;
+        h1 {
+          text-align: center;
+        }
+        nav {
+          margin-top: 24px;
+          ul {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+          }
+        }
+      }
+      #about {
+        margin-top: 32px;
+        padding-inline: 16px;
+        img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          display: block;
+          margin-top: 16px;
+          margin-inline: auto;
+          border: 2px solid black;
+        }
+        p {
+          max-width: 550px;
+          margin-top: 16px;
+        }
+      }
+      #skills {
+        margin-top: 32px;
+        padding-inline: 16px;
+        ul {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          li {
+            span:first-child {
+              display: inline-block;
+              width: 40px;
+            }
+            progress {
+              border: 1px solid black;
+              color: black;
+              background-color: #f4f4f4;
+            }
+            progress::-webkit-progress-bar {
+              background-color: #f4f4f4;
+            }
+
+            progress::-webkit-progress-value {
+              background-color: black;
+            }
+
+            progress::-moz-progress-bar {
+              background-color: black;
+            }
+          }
+        }
+      }
+      #projects {
+        margin-top: 32px;
+        padding-inline: 16px;
+        ul {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          li {
+            cursor: pointer;
+            border: 2px dashed black;
+            padding: 16px;
+            &:hover {
+              border: 2px solid black;
+            }
+            details {
+              summary {
+                list-style: revert;
+              }
+              p {
+                margin-top: 16px;
+              }
+              a {
+                display: block;
+                margin-top: 16px;
+                margin-left: 16px;
+              }
+            }
+          }
+        }
+      }
+      footer {
+        margin-top: 32px;
+        padding-inline: 16px;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        span {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <h1>Welcome to Codesthenos MIMO's Portfolio</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#about">About Me</a>
+          </li>
+          <li>
+            <a href="#skills">Skills</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="about">
+        <header>
+          <h2>About Me</h2>
+        </header>
+        <img
+          src="https://avatars.githubusercontent.com/u/166174180?v=4"
+          alt="Foto de Juan Pérez"
+        />
+        <p>
+          My name is Guillermo. I'm a developer. Besides spending time coding, I
+          love doing calisthenics and hiking through the woods with my
+          girlfirend Sara and my dog, Calcetines.
+        </p>
+      </section>
+      <section id="skills">
+        <header>
+          <h2>Skills</h2>
+          <ul>
+            <li>
+              <span>HTML</span>
+              <progress
+                value="80"
+                max="100"
+                aria-label="Habilidad en HTML"
+              ></progress>
+              <span class="skill-value">80%</span>
+            </li>
+            <li>
+              <span>CSS</span>
+              <progress
+                value="85"
+                max="100"
+                aria-label="Habilidad en CSS"
+              ></progress>
+              <span class="skill-value">85%</span>
+            </li>
+            <li title="JavaScript">
+              <span>JS</span>
+              <progress
+                value="80"
+                max="100"
+                aria-label="Habilidad en JavaScript"
+              ></progress>
+              <span class="skill-value">80%</span>
+            </li>
+          </ul>
+        </header>
+      </section>
+      <section id="projects">
+        <header>
+          <h2>MIMO Projects</h2>
+        </header>
+        <ul>
+          <li>
+            <details>
+              <summary>Trivia Game</summary>
+              <p>
+                A trivia quiz game I built to test general knowledge with
+                multiple choice questions and scoring.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/trivia-game.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Caesar Cipher</summary>
+              <p>
+                A small project I built for a friend to help exchange secret
+                messages.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/caesar-cipher.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Rick and Morty Character Compass</summary>
+              <p>As a big fan of the show, I created a character compass.</p>
+              <a
+                href="https://umbcmo.mimo.run/rick-and-morty.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Unit Converter</summary>
+              <p>
+                A small tool I built to quickly convert between units like
+                length, weight, and temperature.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/unit-converter.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Coffee Shop Menu</summary>
+              <p>
+                A simple interactive menu interface for a coffee shop,
+                showcasing drinks and prices.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/coffee-shop-menu.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Guessing Game</summary>
+              <p>
+                A fun guessing game where the user tries to guess the correct
+                number within limited attempts.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/guessing-game.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Gallery</summary>
+              <p>
+                An interactive gallery project where users can browse and view
+                images with smooth transitions.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/gallery.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>Digital Business Card</summary>
+              <p>
+                A digital business card project that displays my contact
+                information in a creative, interactive format.
+              </p>
+              <a
+                href="https://umbcmo.mimo.run/digital-business-card.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to project</a
+              >
+            </details>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>
+        <small
+          >© 2025 Guillermo Ruiz Arranz.<span>All rights reserved.</span></small
+        >
+      </p>
+      <p><small>Created by Codesthenos</small></p>
+    </footer>
+    <script type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digital Business Card</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        background-color: gainsboro;
+        font-family: Arial, Helvetica, sans-serif;
+        text-wrap: pretty;
+        margin: 8px;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        background-color: bisque;
+        padding: 8px 16px;
+        border-radius: 12px;
+        transition: all 0.2s ease-in;
+        &:hover {
+          box-shadow: 2px 2px 4px 0 #404040;
+        }
+      }
+      main {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-areas:
+          "name image"
+          "job image"
+          "description image"
+          "email image"
+          "phone image";
+        grid-template-columns: 2fr 1fr;
+        column-gap: 20px;
+        width: 80%;
+        margin-inline: auto;
+        margin-top: 48px;
+        min-width: 300px;
+        max-width: 600px;
+        background-color: white;
+        border-radius: 10px;
+        padding-left: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .name {
+          margin-top: 16px;
+          grid-area: name;
+        }
+        .job {
+          grid-area: job;
+        }
+        .description {
+          margin-top: 16px;
+          grid-area: description;
+        }
+        .email {
+          margin-top: 66px;
+          grid-area: email;
+        }
+        .phone {
+          margin-top: 16px;
+          margin-bottom: 36px;
+          grid-area: phone;
+        }
+        .image {
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          grid-area: image;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+    <main>
+      <h1 class="name">Jane Doe</h1>
+      <h2 class="job">Web Developer</h2>
+      <p class="description">
+        Passionate web developer who loves to create modern websites.
+      </p>
+      <p class="email">Email: jane@mimo.org</p>
+      <p class="phone">Phone: +1 (123) 456-7890</p>
+      <img
+        class="image"
+        src="https://mimo.app/i/lori.png"
+        alt="Jane Doe Portrait"
+      />
+    </main>
+    <script type="text/javascript"></script>
+  </body>
+</html>

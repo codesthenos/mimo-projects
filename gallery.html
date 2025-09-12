@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gallery</title>
+    <style>
+      body {
+        background-color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-wrap: pretty;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        background-color: bisque;
+        padding: 8px 16px;
+        border-radius: 12px;
+        transition: all 0.2s ease-in;
+        &:hover {
+          box-shadow: 2px 2px 4px 0 #404040;
+        }
+      }
+      main {
+        box-sizing: border-box;
+        max-width: 650px;
+        margin-inline: auto;
+        margin-top: 16px;
+        padding: 16px 24px;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 32px;
+      }
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        font-size: 18px;
+        li:hover {
+          cursor: pointer;
+        }
+      }
+      img {
+        height: 125px;
+      }
+      dialog {
+        width: 100%;
+        height: 100%;
+        background: #40404080;
+        button {
+          /* padding: 8px; */
+          vertical-align: center;
+          box-sizing: border-box;
+          position: absolute;
+          right: 16px;
+          outline: none;
+          border: 2px solid #404040;
+          border-radius: 100px;
+          background-color: white;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          width: 32px;
+          height: 32px;
+          color: #404040;
+          &:hover {
+            box-shadow: 2px 2px 4px 0px #404040;
+          }
+        }
+        img {
+          width: 30%;
+          height: auto;
+          margin-inline: auto;
+          display: block;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+    <main>
+      <h1>Welcome to my gallery!</h1>
+      <ul>
+        <li>
+          <img src="https://mimo.app/i/whispurr.png" alt="gato 1" />
+          <h3>Whispurr</h3>
+        </li>
+        <li>
+          <img src="https://mimo.app/i/babaganoosh.png" alt="gato 2" />
+          <h3>Babaganoosh</h3>
+        </li>
+        <li>
+          <img src="https://mimo.app/i/nacho.png" alt="gato 3" />
+          <h3>Nacho</h3>
+        </li>
+      </ul>
+      <dialog>
+        <button id="close">✖</button>
+        <img src="" alt="" />
+      </dialog>
+    </main>
+    <script type="text/javascript">
+      const dialog = document.querySelector("dialog");
+      const closeButton = document.getElementById("close");
+
+      closeButton.onclick = () => dialog.close();
+
+      document.querySelectorAll("li").forEach((li) => {
+        li.onclick = () => {
+          const liImg = li.querySelector("img");
+          const dialogImg = dialog.querySelector("img");
+          dialogImg.src = liImg.src;
+          dialogImg.alt = liImg.alt;
+          dialog.showModal();
+        };
+      });
+    </script>
+  </body>
+</html>

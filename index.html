@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Full-Stack Developer Career Path</title>
+    <style>
+      body {
+        max-width: 800px;
+        padding-inline: 16px;
+        margin-inline: auto;
+        background-color: bisque;
+        font-family: Arial, Helvetica, sans-serif;
+        text-wrap: pretty;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        background-color: aliceblue;
+        padding: 8px 16px;
+        border-radius: 12px;
+        transition: all 0.2s ease-in;
+        &:hover {
+          box-shadow: 2px 2px 4px 0 #404040;
+        }
+      }
+      ul {
+        list-style: none;
+        padding: 0px;
+        display: grid;
+        max-width: 500px;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .slider-container {
+        margin-inline: auto;
+        position: relative;
+        width: 150px;
+        height: 20px;
+        border-radius: 6px;
+        background: linear-gradient(to right, #000000, #ffffff 70%);
+        input[type="checkbox"] {
+          appearance: none;
+          &:hover::before {
+            box-shadow: 2px 2px 4px 0 #404040;
+          }
+          &::before {
+            cursor: pointer;
+            transition: all 0.5s ease-in;
+            border-radius: 6px;
+            background-color: aliceblue;
+            color: black;
+            content: "LIGHT";
+            font-weight: bold;
+            text-align: center;
+            line-height: 20px;
+            display: block;
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+          &:checked::before {
+            background-color: black;
+            color: aliceblue;
+            content: "DARK";
+            margin-left: 50%;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Full-Stack Developer Career Path</h1>
+    <div class="slider-container">
+      <input type="checkbox" id="switch-mode" />
+    </div>
+    <ul>
+      <li>
+        <a href="unit-converter.html">Unit Converter</a>
+      </li>
+      <li>
+        <a href="coffee-shop-menu.html">Coffee shop menu</a>
+      </li>
+      <li>
+        <a href="guessing-game.html">Guessing Game</a>
+      </li>
+      <li>
+        <a href="gallery.html">Gallery</a>
+      </li>
+      <li>
+        <a href="digital-business-card.html">Digital Business Card</a>
+      </li>
+      <li>
+        <a href="trivia-game.html">Trivia Game</a>
+      </li>
+      <li>
+        <a href="rick-and-morty.html">Rick and Morty</a>
+      </li>
+      <li>
+        <a href="caesar-cipher.html">Caesar Cipher</a>
+      </li>
+      <li>
+        <a href="typewriter-portfolio.html">Typewriter Portfolio</a>
+      </li>
+    </ul>
+    <h2>Codesthenos - Guillermo Ruiz Arranz</h2>
+    <script type="text/javascript">
+      const body = document.querySelector("body");
+      document.getElementById("switch-mode").onchange = (e) => {
+        if (e.target.checked) {
+          body.style.backgroundColor = "#404040";
+          body.style.color = "aliceblue";
+        } else {
+          body.style.backgroundColor = "bisque";
+          body.style.color = "black";
+        }
+      };
+    </script>
+  </body>
+</html>

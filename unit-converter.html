@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit Converter</title>
+    <style>
+      body {
+        background-color: bisque;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      main {
+        max-width: 650px;
+        margin-inline: auto;
+      }
+      h1 {
+        background-color: lightblue;
+        border-radius: 4px;
+        padding: 4px;
+      }
+      .result {
+        margin-top: 16px;
+        color: aliceblue;
+        background-color: brown;
+        width: fit-content;
+        padding: 4px;
+        border-radius: 4px;
+      }
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        background-color: aliceblue;
+        padding: 8px 16px;
+        border-radius: 12px;
+        transition: all 0.2s ease-in;
+        &:hover {
+          box-shadow: 2px 2px 4px 0 #404040;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+    <main>
+      <h1>Unit Converter</h1>
+      <div>
+        <input
+          type="number"
+          id="input-number"
+          placeholder="Enter the number..."
+        />
+        <select name="converter" id="select-converter">
+          <option value="mile-km">Miles to Kilometers</option>
+          <option value="km-mile">Kilometers to Miles</option>
+        </select>
+        <button type="button" id="button-converter">Convert</button>
+      </div>
+      <p class="result" id="result">Result: 0</p>
+    </main>
+    <script type="text/javascript">
+      const $ = (id) => document.getElementById(id);
+      const button = $("button-converter");
+      const result = $("result");
+
+      const convert = (number, option) => {
+        const MILE_TO_KM = 1.60934;
+        const KM_TO_MILE = 0.62137;
+        const factor = option === "mile-km" ? MILE_TO_KM : KM_TO_MILE;
+
+        return number * factor;
+      };
+
+      const onclickFn = () => {
+        const selector = $("select-converter");
+        const option = selector.value;
+        const optionText =
+          option === "mile-km"
+            ? { first: "miles are", last: "kilometers" }
+            : { first: "kilometers are", last: "miles" };
+        const inputNumber = $("input-number");
+        const number = inputNumber.value;
+        const conversionValue = convert(number, option);
+        result.innerText = `Result: ${number} ${optionText.first} ${conversionValue} ${optionText.last}`;
+      };
+      button.onclick = onclickFn;
+    </script>
+  </body>
+</html>
