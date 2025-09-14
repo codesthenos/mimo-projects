@@ -5,6 +5,8 @@
 ### Links to each project
 
 - [Trivia Game](https://umbcmo.mimo.run/trivia-game.html)
+- [Comedian Bot](https://umbcmo.mimo.run/comedian-bot.html)
+- [Pixel Paws](https://umbcmo.mimo.run/pixel-paws.html)
 - [Typewriter Portfolio](https://umbcmo.mimo.run/typewriter-portfolio.html)
 - [Caesar Cipher](https://umbcmo.mimo.run/caesar-cipher.html)
 - [Rick and Morty](https://umbcmo.mimo.run/rick-and-morty.html)
