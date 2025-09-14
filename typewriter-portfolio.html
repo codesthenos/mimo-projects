@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <link
@@ -28,6 +28,7 @@
         background-color: #f4f4f4;
         color: black;
         text-wrap: pretty;
+        interpolate-size: allow-keywords;
       }
       .main-header {
         margin-top: 32px;
@@ -111,6 +112,12 @@
               border: 2px solid black;
             }
             details {
+              height: 18px;
+              overflow: clip;
+              transition: height 0.5s ease;
+              &[open] {
+                height: auto;
+              }
               summary {
                 list-style: revert;
               }
@@ -332,7 +339,9 @@
     <footer>
       <p>
         <small
-          >© 2025 Guillermo Ruiz Arranz.<span>All rights reserved.</span></small
+          >© 2025 Guillermo Ruiz Arranz.<span
+            >All rights reserved.</span
+          ></small
         >
       </p>
       <p><small>Created by Codesthenos</small></p>
