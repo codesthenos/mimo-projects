@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linktree</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      body {
+        max-width: 800px;
+        margin-inline: auto;
+        background-color: slateblue;
+        color: white;
+        font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+        text-align: center;
+        text-wrap: pretty;
+      }
+      header {
+        margin-top: 8px;
+        & a {
+          display: block;
+          text-decoration: none;
+          width: fit-content;
+          padding: 10px 20px;
+          background-color: salmon;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: box-shadow 0.3s ease;
+          &:hover {
+            box-shadow: 2px 2px 4px 0 #404040;
+          }
+        }
+      }
+      main {
+        & img {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          display: block;
+          margin-top: 16px;
+          margin-inline: auto;
+        }
+        & h1,
+        h2,
+        p,
+        nav {
+          margin-top: 16px;
+        }
+        & a {
+          background-color: white;
+          font-size: 20px;
+          border-radius: 10px;
+          padding: 10px;
+          display: block;
+          text-align: center;
+          margin: 10px;
+          color: slateblue;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+      </nav>
+    </header>
+    <main>
+      <img
+        src="https://avatars.githubusercontent.com/u/166174180?v=4"
+        alt="Foto de Guillermo Ruiz aka codesthenos"
+      />
+      <h1>Codesthenos</h1>
+      <h2>Software Developer</h2>
+      <p>Welcome to my Linktree!</p>
+      <nav>
+        <ul>
+          <li>
+            <a
+              href="https://www.instagram.com/chafun69"
+              rel="noreferrer noopener"
+              target="_blank"
+              >Instagram</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/codesthenos"
+              rel="noreferrer noopener"
+              target="_blank"
+              >Github</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </main>
+    <script type="text/javascript"></script>
+  </body>
+</html>
